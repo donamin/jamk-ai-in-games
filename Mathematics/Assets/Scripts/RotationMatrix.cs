@@ -17,13 +17,5 @@ public class RotationMatrix : MonoBehaviour
     {
         Debug.DrawLine(Vector3.zero, transform.position, Color.white);
         Debug.DrawLine(Vector3.zero, rotatedObject.transform.position, Color.yellow);
-
-        float sin = Mathf.Sin(theta * Mathf.Deg2Rad);
-        float cos = Mathf.Cos(theta * Mathf.Deg2Rad);
-
-        float newX = transform.position.x * cos - transform.position.z * sin;
-        float newZ = transform.position.x * sin + transform.position.z * cos;
-
-        rotatedObject.transform.position = new Vector3(newX, 0, newZ);
     }
 }

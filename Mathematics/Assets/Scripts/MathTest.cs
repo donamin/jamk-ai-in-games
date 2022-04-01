@@ -12,25 +12,32 @@ public class MathTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(Vector3.zero, transform.position, Color.white);
+        float norm = Mathf.Sqrt(Mathf.Pow(transform.position.x, 2) + Mathf.Pow(transform.position.y, 2) + Mathf.Pow(transform.position.z, 2));
+        //float norm = Vector3.Magnitude(transform.position);
+        //float norm = transform.position.magnitude;
+        Debug.Log(norm);
 
-        float norm_manual = Mathf.Sqrt(Mathf.Pow(transform.position.x, 2) + Mathf.Pow(transform.position.y, 2) + Mathf.Pow(transform.position.z, 2));
-        //print(norm_manual);
-        float norm_unity = transform.position.magnitude;
-        //print(norm_unity);
-        //print(Mathf.Abs(norm_unity - norm_manual));
+        if (norm < 10)
+            Debug.DrawLine(Vector3.zero, transform.position, Color.red);
+        else
+            Debug.DrawLine(Vector3.zero, transform.position, Color.green);
 
-        float sqr_norm_manual = Mathf.Pow(transform.position.x, 2) + Mathf.Pow(transform.position.y, 2) + Mathf.Pow(transform.position.z, 2);
-        float sqr_norm_unity = transform.position.sqrMagnitude;
 
-        /*if (norm_unity < 2)
-            print("do something");
-        if (sqr_norm_unity < 4)
-            print("do the same thing faster");*/
+        float sqr_norm = Mathf.Pow(transform.position.x, 2) + Mathf.Pow(transform.position.y, 2) + Mathf.Pow(transform.position.z, 2);
+        //float sqr_norm = Vector3.SqrMagnitude(transform.position);
+        //float sqr_norm = transform.position.sqrMagnitude;
 
-        Vector3 pos_unit_manual = transform.position / (norm_manual > 0 ? norm_manual : 1);
-        //Debug.DrawLine(Vector3.zero, pos_unit_manual, Color.green);
-        Vector3 pos_unit_unity = transform.position.normalized;
-        Debug.DrawLine(Vector3.zero, pos_unit_unity, Color.green);
+        if (sqr_norm < 100)
+            Debug.DrawLine(Vector3.zero, transform.position, Color.red);
+        else
+            Debug.DrawLine(Vector3.zero, transform.position, Color.green);
+
+        Vector3 pos_unit;
+        if (sqr_norm > 0)
+            pos_unit = transform.position / norm;
+        else
+            pos_unit = Vector3.zero;
+        //Vector3 pos_unit = transform.position.normalized;
+        Debug.DrawLine(Vector3.zero, pos_unit, Color.blue);
     }
 }
