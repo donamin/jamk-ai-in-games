@@ -30,8 +30,10 @@ public class DotProductTest : MonoBehaviour
             Debug.DrawLine(transform.position, enemy.transform.position, Color.green);*/
 
         float alpha = Mathf.Acos(dot / (f.magnitude * p.magnitude)) * Mathf.Rad2Deg;
+        //TODO: YOUR CODE HERE (Q1)
+
         Debug.Log(alpha);
-        if(alpha < beta && p.magnitude < range)
+        if(alpha > -beta && alpha < beta && p.magnitude < range)
             Debug.DrawLine(transform.position, enemy.transform.position, Color.red);
         else
             Debug.DrawLine(transform.position, enemy.transform.position, Color.green);
