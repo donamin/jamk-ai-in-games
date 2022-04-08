@@ -37,5 +37,10 @@ public class DotProductTest : MonoBehaviour
             Debug.DrawLine(transform.position, enemy.transform.position, Color.red);
         else
             Debug.DrawLine(transform.position, enemy.transform.position, Color.green);
+
+        // Vector3 q = transform.right;
+        Vector3 q = Vector3.Cross(transform.forward, transform.up);
+        Vector3 proj = Vector3.Dot(p, q) / q.sqrMagnitude * q;
+        Debug.DrawLine(transform.position, transform.position + proj, Color.red);
     }
 }

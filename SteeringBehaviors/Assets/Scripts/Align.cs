@@ -22,24 +22,21 @@ public class Align : BaseSteeringBehavior
 
         if (target)
         {
-            float a = character.orientation;
-            float b = target.orientation;
+            float rotation = target.orientation - character.orientation;
 
-            float rotation = b - a;
             if (rotation > 180)
                 rotation = rotation - 360;
-            else if (rotation < -180)
+            if (rotation < -180)
                 rotation = rotation + 360;
-            //print(rotation);
+
             float rotationSize = Mathf.Abs(rotation);
 
             if (rotationSize < targetRadius)
-            {
                 return steering;
-            }
 
             float targetRotation = 0;
-            if (rotationSize > slowRadius)
+
+            if(rotationSize > slowRadius)
             {
                 targetRotation = maxRotation;
             }
@@ -48,9 +45,7 @@ public class Align : BaseSteeringBehavior
                 //targetRotation = maxRotation * rotationSize / slowRadius;
                 targetRotation = maxRotation * (rotationSize - targetRadius) / (slowRadius - targetRadius);
             }
-            targetRotation *= Mathf.Sign(rotation);
-
-            steering.linear = Vector3.zero;
+            targetRotation *= rotation / rotationSize;
 
             steering.angular = targetRotation - character.rotation;
             steering.angular /= timeToTarget;

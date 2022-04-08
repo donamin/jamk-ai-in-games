@@ -16,11 +16,9 @@ public class SeekAndFlee : BaseSteeringBehavior
 
         if (target)
         {
-            steering.linear = target.transform.position - character.transform.position;
+            steering.linear = target.transform.position - transform.position;
             if (flee)
                 steering.linear *= -1;
-
-            steering.linear.y = 0;
             steering.linear.Normalize();
             steering.linear *= maxAcceleration;
         }
