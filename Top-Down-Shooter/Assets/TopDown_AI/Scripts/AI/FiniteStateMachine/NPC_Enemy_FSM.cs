@@ -45,66 +45,15 @@ public class NPC_Enemy_FSM : MonoBehaviour
 	{
 		npcAnimator.SetFloat(hashSpeed, navMeshAgent.velocity.magnitude);
 
-		switch (currentAction)
-		{
-			case NPC_EnemyAction.IDLE:
-				ActionUpdate_Idle();
-				break;
-			case NPC_EnemyAction.INSPECT:
-				ActionUpdate_Inspect();
-				break;
-			case NPC_EnemyAction.PATROL:
-				ActionUpdate_Patrol();
-				break;
-			case NPC_EnemyAction.ATTACK:
-				ActionUpdate_Attack();
-				break;
-		}
+		//Call action's update function!
 
 		canHearPlayer = false;
 	}
 
 	void GoToState(NPC_EnemyAction newState)
 	{
-		if (currentAction != NPC_EnemyAction.NONE)
-		{
-			switch (currentAction)
-			{
-				case NPC_EnemyAction.IDLE:
-					ActionEnd_Idle();
-					break;
-				case NPC_EnemyAction.INSPECT:
-					ActionEnd_Inspect();
-					break;
-				case NPC_EnemyAction.PATROL:
-					ActionEnd_Patrol();
-					break;
-				case NPC_EnemyAction.ATTACK:
-					ActionEnd_Attack();
-					break;
-			}
-		}
-
+		//ToDo: Complete the function!
 		currentAction = newState;
-
-		if (currentAction != NPC_EnemyAction.NONE)
-		{
-			switch (currentAction)
-			{
-				case NPC_EnemyAction.IDLE:
-					ActionInit_Idle();
-					break;
-				case NPC_EnemyAction.INSPECT:
-					ActionInit_Inspect();
-					break;
-				case NPC_EnemyAction.PATROL:
-					ActionInit_Patrol();
-					break;
-				case NPC_EnemyAction.ATTACK:
-					ActionInit_Attack();
-					break;
-			}
-		}
 	}
 
 	public string GetStateText()

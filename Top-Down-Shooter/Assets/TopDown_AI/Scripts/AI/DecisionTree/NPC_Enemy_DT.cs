@@ -37,7 +37,7 @@ public class NPC_Enemy_DT : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
+	{
 		startingPos = transform.position;
 		hashSpeed = Animator.StringToHash("Speed");
 		SetWeapon(weaponType);
@@ -45,9 +45,9 @@ public class NPC_Enemy_DT : MonoBehaviour
 		BuildDecisionTree();
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
 		npcAnimator.SetFloat(hashSpeed, navMeshAgent.velocity.magnitude);
 
 		DT_Action dt_NewAction = null;
@@ -56,8 +56,8 @@ public class NPC_Enemy_DT : MonoBehaviour
 			dt_NewAction = dtNode_Root.MakeDecision() as DT_Action;
 		}
 		else
-        {
-            //TODO: YOUR CODE HERE (Q2)
+		{
+			//TODO: YOUR CODE HERE (Q2)
 		}
 		if (dt_NewAction != null)
 		{
@@ -93,7 +93,7 @@ public class NPC_Enemy_DT : MonoBehaviour
 	}
 
 	bool CanSeePlayer()
-    {
+	{
 		RaycastHit hit = new RaycastHit();
 		int nRays = 100;
 		for (int i = 0; i < nRays; i++)
@@ -109,14 +109,14 @@ public class NPC_Enemy_DT : MonoBehaviour
 	}
 
 	bool CanHearPlayer()
-    {
+	{
 		return canHearPlayer;
 	}
 
 	bool IsInAttackRange()
-    {
+	{
 		return inAttackRange;
-    }
+	}
 
 	public void SetAction(NPC_EnemyAction newAction)
 	{
@@ -231,7 +231,7 @@ public class NPC_Enemy_DT : MonoBehaviour
 
 	void ActionUpdate_Idle() { }
 
-	void ActionEnd_Idle() {	}
+	void ActionEnd_Idle() { }
 	//////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////// Action: INSPECT /////////////////////////////
@@ -308,7 +308,7 @@ public class NPC_Enemy_DT : MonoBehaviour
 		npcAnimator.SetBool("Attack", false);
 	}
 	//////////////////////////////////////////////////////////////////////////
-	
+
 	///////////////////////////// Action: PATROL /////////////////////////////
 	void ActionInit_Patrol()
 	{
