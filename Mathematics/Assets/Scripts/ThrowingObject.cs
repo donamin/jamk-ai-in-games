@@ -34,15 +34,17 @@ public class ThrowingObject : MonoBehaviour
 
         if(throwing && !throwFinished)
         {
-            //Update the position if the throw is not finished yet.
-            transform.position += velocity * Time.deltaTime;
+            //Throw in progress!
+
+            //Update the position.
+            //ToDo: transform.position += ;
+
+            //Update the z component of the velocity (the x component does not need to updated since its acceleration is zero)
+            //ToDo: velocity.z += ;
 
             //Stop throwing if z becomes zero or negative
             if (transform.position.z <= 0)
                 throwFinished = true;
-
-            //Update the z component of the velocity (the x component does not need to updated since its acceleration is zero)
-            //ToDo: velocity.z += ;
         }
 
         float t_end = 0;
