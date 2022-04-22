@@ -45,15 +45,66 @@ public class NPC_Enemy_FSM : MonoBehaviour
 	{
 		npcAnimator.SetFloat(hashSpeed, navMeshAgent.velocity.magnitude);
 
-		//Call action's update function!
+		switch (currentAction)
+		{
+			case NPC_EnemyAction.IDLE:
+				ActionUpdate_Idle();
+				break;
+			case NPC_EnemyAction.INSPECT:
+				ActionUpdate_Inspect();
+				break;
+			case NPC_EnemyAction.PATROL:
+				ActionUpdate_Patrol();
+				break;
+			case NPC_EnemyAction.ATTACK:
+				ActionUpdate_Attack();
+				break;
+		}
 
 		canHearPlayer = false;
 	}
 
 	void GoToState(NPC_EnemyAction newState)
 	{
-		//ToDo: Complete the function!
+		if (currentAction != NPC_EnemyAction.NONE)
+		{
+			switch (currentAction)
+			{
+				case NPC_EnemyAction.IDLE:
+					ActionEnd_Idle();
+					break;
+				case NPC_EnemyAction.INSPECT:
+					ActionEnd_Inspect();
+					break;
+				case NPC_EnemyAction.PATROL:
+					ActionEnd_Patrol();
+					break;
+				case NPC_EnemyAction.ATTACK:
+					ActionEnd_Attack();
+					break;
+			}
+		}
+
 		currentAction = newState;
+
+		if (currentAction != NPC_EnemyAction.NONE)
+		{
+			switch (currentAction)
+			{
+				case NPC_EnemyAction.IDLE:
+					ActionInit_Idle();
+					break;
+				case NPC_EnemyAction.INSPECT:
+					ActionInit_Inspect();
+					break;
+				case NPC_EnemyAction.PATROL:
+					ActionInit_Patrol();
+					break;
+				case NPC_EnemyAction.ATTACK:
+					ActionInit_Attack();
+					break;
+			}
+		}
 	}
 
 	public string GetStateText()
@@ -199,7 +250,7 @@ public class NPC_Enemy_FSM : MonoBehaviour
 	public void Damage()
 	{
 		//TODO: YOUR CODE HERE (Q1): A soldier has been killed. Update the static variables (rifleSolider & shotgunSolider) accordingly.
-		
+
 		navMeshAgent.velocity = Vector3.zero;
 		//navMeshAgent.Stop ();
 		npcAnimator.SetBool("Dead", true);

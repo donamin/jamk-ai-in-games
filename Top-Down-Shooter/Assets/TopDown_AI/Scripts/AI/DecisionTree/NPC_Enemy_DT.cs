@@ -282,7 +282,9 @@ public class NPC_Enemy_DT : MonoBehaviour
 				inspectTurnTimer.StartTimer(Random.Range(0.5f, 1.25f));
 			}
 			if (inspectTimer.IsFinished())
+			{
 				SetAction(NPC_EnemyAction.IDLE);
+			}
 		}
 	}
 	void ActionEnd_Inspect() { }
