@@ -6,6 +6,8 @@ public class Kinematics : MonoBehaviour
 {
     BaseSteeringBehavior steeringBehavior;
 
+    public float maxVelocity = 5;
+
     public float orientation = 0;
 
     public Vector3 velocity;
@@ -47,6 +49,11 @@ public class Kinematics : MonoBehaviour
         SteeringOutput steeringOutput = steeringBehavior.GetSteering();
         velocity += steeringOutput.linear * Time.deltaTime;
         rotation += steeringOutput.angular * Time.deltaTime;
+
+        if (velocity.magnitude > maxVelocity)
+        {
+            velocity = velocity.normalized * maxVelocity;
+        }
 
         //Return the object to the middle of the screen if it gets too far!
         if (transform.position.magnitude > 40)
